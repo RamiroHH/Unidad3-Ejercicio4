@@ -25,12 +25,15 @@ public class ProductoCreateController {
 
     @PostMapping
     public ResponseEntity<BaseResponse<ProductoResponseDto>> create(
-        @Valid @RequestBody ProductoCreateRequestDto dto) {
-        return ResponseEntity.ok(
-            BaseResponse.ok(
-                productoCreateService.create(dto), 
-                "Producto creado correctamente"
-            )
-        );
+            @Valid @RequestBody ProductoCreateRequestDto dto) {
+
+        return ResponseEntity
+                .status(201) // 👈 IMPORTANTE (US01)
+                .body(
+                        BaseResponse.ok(
+                                productoCreateService.create(dto),
+                                "Producto creado correctamente"
+                        )
+                );
     }
 }
