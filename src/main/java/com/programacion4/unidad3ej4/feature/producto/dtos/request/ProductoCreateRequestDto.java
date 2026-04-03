@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Data
 @NoArgsConstructor
@@ -21,10 +23,13 @@ public class ProductoCreateRequestDto {
     private String descripcion;
 
     @NotNull(message = "El precio es requerido")
+    @Positive(message = "El precio debe ser mayor a 0")
     private Double precio;
 
     @NotNull(message = "El stock es requerido")
+    @PositiveOrZero(message = "El stock no puede ser negativo")
     private Integer stock;
+
 
     @NotNull(message = "La categoría es requerida")
     private Long categoriaId;
